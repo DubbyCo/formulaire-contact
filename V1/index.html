@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dubby Code — Développement web éthique & sécurisé</title>
+    <meta
+      name="description"
+      content="Développeur web freelance. Sites sur-mesure, sécurisés, hébergés en Europe. Zéro GAFAM, code éco-responsable."
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ── HEADER ──────────────────────────────────────────────── -->
+    <header class="site-header" id="site-header">
+      <a href="#" class="header-logo">DUBBY<span>-CODE</span></a>
+
+      <nav class="header-nav" id="header-nav" aria-label="Navigation principale">
+        <a href="#apropos">À propos</a>
+        <a href="#competences-section">Compétences</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-right">
+        <a href="#contact" class="header-cta">CONTACT →</a>
+        <button
+          class="burger"
+          id="burger-btn"
+          aria-label="Ouvrir le menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ── MARQUEE ─────────────────────────────────────────────── -->
+    <div class="marquee-band" aria-hidden="true">
+      <div class="marquee-track" id="marquee-track">
+        <!-- Rempli par JS -->
+      </div>
+    </div>
+
+    <!-- ── CONTENU PRINCIPAL ───────────────────────────────────── -->
+    <main>
+      <div class="section-wrapper fade-in" id="apropos">
+        <div class="apropos-grid">
+          <div class="apropos-texte">
+            <p class="apropos-label">À PROPOS</p>
+            <h2 class="apropos-titre">
+              Je construis du web léger, souverain et sécurisé.
+            </h2>
+            <p class="apropos-bio">
+              Je m'appelle Victor, je suis développeur web full stack, fondateur
+              de Dubby Code.
+            </p>
+            <p class="apropos-bio">
+              Un bon site web, c'est un site qui respecte autant celui qui le
+              visite que la planète qui l'héberge.
+            </p>
+            <p class="apropos-bio">
+              Dubby Code a des valeurs fortes : Green IT, performance,
+              souveraineté et sécurité qui se trouvent sur le même chemin. Pas
+              de dépendances inutiles, pas de ressources chargées depuis des
+              serveurs à l'autre bout du monde. Du code réfléchi ligne par ligne
+              pour être performant et sécurisé.
+            </p>
+            <p class="apropos-bio">
+              Un site léger charge vite, consomme moins, dépend de moins de
+              tiers, et expose moins de surface d'attaque.
+            </p>
+            <p class="apropos-bio">
+              Je construis des sites mobile-first sur mesure, performants,
+              sécurisés, qui protègent autant vos données que celles de vos
+              visiteurs.
+            </p>
+            <p class="apropos-bio">
+              Ma pratique est orientée vers le renforcement de la sécurité
+              applicative et des audits, pour que vos projets ne soient pas
+              laissés avec des vulnérabilités.
+            </p>
+            <p class="apropos-bio">
+              Si vous cherchez quelqu'un qui s'investit autant dans votre projet
+              que vous même, je suis à votre écoute.
+            </p>
+          </div>
+
+          <div class="apropos-side">
+            <div class="apropos-card">
+              <p class="apropos-bloc-label">VALEURS</p>
+              <div class="tag-list">
+                <span class="tag">🌱 Green IT</span>
+                <span class="tag">🇫🇷 Souveraineté</span>
+                <span class="tag">🔐 Sécurité</span>
+                <span class="tag">⚡ Performance</span>
+                <span class="tag">♿ Accessibilité</span>
+                <span class="tag">🔍 RGPD</span>
+              </div>
+            </div>
+
+            <div class="apropos-card">
+              <p class="apropos-bloc-label">STACK</p>
+              <div class="tag-list">
+                <span class="tag tag--tech">HTML / CSS</span>
+                <span class="tag tag--tech">JavaScript</span>
+                <span class="tag tag--tech">Vue.js</span>
+                <span class="tag tag--tech">Nuxt.js</span>
+                <span class="tag tag--tech">Node.js</span>
+                <span class="tag tag--tech">Hébergement VPS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section-wrapper fade-in" id="competences-section">
+        <nav id="filtres" aria-label="Filtrer les compétences"></nav>
+        <section id="competences"></section>
+      </div>
+
+      <div class="section-wrapper fade-in" id="contact">
+        <div class="contact-card">
+          <div class="contact-accroche">
+            <h2>Travaillons ensemble.</h2>
+            <p>
+              Un projet web éco-responsable, une refonte, une question ?<br />
+              Je vous réponds sous 24h.
+            </p>
+          </div>
+
+          <form id="contactForm" class="contact-form">
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <button type="submit" id="btnEnvoyer" class="form-submit">
+              ENVOYER →
+            </button>
+          </form>
+
+          <p id="msgSucces" class="form-msg succes" hidden>
+            ✓ Message envoyé — je reviens vers toi rapidement.
+          </p>
+          <p id="msgErreur" class="form-msg erreur" hidden>
+            Une erreur est survenue. Réessaie ou écris-moi directement.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- ── FOOTER ──────────────────────────────────────────────── -->
+    <footer class="site-footer">
+      <p class="footer-brand">© 2026 DUBBY-CODE — Micro-entreprise française</p>
+
+      <nav class="footer-nav" aria-label="Navigation secondaire">
+        <a href="#apropos">À propos</a>
+        <a href="#competences">Compétences</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer-socials">
+        <a href="https://github.com/" target="_blank" rel="noopener noreferrer"
+          >GitHub</a
+        >
+        <a
+          href="https://linkedin.com/in/victor-ivanoff-developpeur-web"
+          target="_blank"
+          rel="noopener noreferrer"
+          >LinkedIn</a
+        >
+        <a href="https://www.malt.fr/" target="_blank" rel="noopener noreferrer"
+          >Malt</a
+        >
+      </div>
+
+      <p class="footer-legal">
+        Mentions légales · RGPD · Hébergé chez Infomaniak 🇫🇷 · Zéro tracker ·
+        Énergie renouvelable
+      </p>
+    </footer>
+
+    <!-- ── SCROLL TO TOP ───────────────────────────────────────── -->
+    <button
+      class="scroll-top"
+      id="scroll-top"
+      title="Remonter en haut"
+      aria-label="Remonter en haut de page"
+    >
+      ↑
+    </button>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
