@@ -15,7 +15,7 @@
     <div class="header-right">
       <a href="#contact" class="header-cta">CONTACT →</a>
       <button class="theme-toggle" @click="uiStore.toggleDarkMode" aria-label="Changer le thème">
-        {{ uiStore.darkMode ? "☀️ Thème clair" : "🌙 Thème sombre" }}
+        {{ uiStore.darkMode ? "🌙" : "☀️" }}
       </button>
       <button class="burger" :class="{ open: menuOuvert }" @click="toggleMenu" aria-expanded="menuOuvert"
         aria-label="Ouvrir le menu">
@@ -116,6 +116,12 @@ onUnmounted(() => {
   color: var(--text);
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .header-cta {
   background: transparent;
   color: var(--green);
@@ -203,6 +209,26 @@ onUnmounted(() => {
 
 @media (min-width: 769px) {
   .burger { display: none; }
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--green);
 }
 
 </style>
