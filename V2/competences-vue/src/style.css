@@ -1,0 +1,115 @@
+@font-face {
+  font-family: "Syne";
+  src: url("/fonts/Syne-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Syne";
+  src: url("/fonts/Syne-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Syne";
+  src: url("/fonts/Syne-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Syne";
+  src: url("/fonts/Syne-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Syne";
+  src: url("/fonts/Syne-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0f110e;
+  --text: #e8ead4;
+  --muted: rgba(232, 234, 212, 0.6);
+  --faint: rgba(232, 234, 212, 0.07);
+  --border: rgba(232, 234, 212, 0.08);
+  --tag-border: rgba(232, 234, 212, 0.6);
+  --footer-col: rgba(232, 234, 212, 0.6);
+  --nav-blur: rgba(15, 17, 14, 0.96);
+  --green: #7ed321;
+  --teal: #3dbfa0;
+  --yellow: #d4e600;
+  --grad-text: linear-gradient(90deg, #7ed321 0%, #d4e600 50%, #3dbfa0 100%);
+  --grad-btn: linear-gradient(135deg, #7ed321, #3dbfa0);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Syne", "Arial Black", sans-serif;
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  padding: 0 24px;
+  flex: 1;
+}
+
+.section-wrapper {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+
+
+
