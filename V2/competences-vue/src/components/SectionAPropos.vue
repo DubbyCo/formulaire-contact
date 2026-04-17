@@ -179,6 +179,14 @@ const { texteAffiche } = useTypewriter([
     padding: 0 20px;
     height: 56px;
   }
+    .typewriter, .curseur {
+    display: none;
+  }
+  
+  .apropos-titre::after {
+    content: " éco-responsables.";
+    color: var(--green);
+  }
 }
 
 
