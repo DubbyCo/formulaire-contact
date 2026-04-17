@@ -31,7 +31,7 @@ const ui = useUiStore ()
 
 onMounted(() => {
   if (ui.darkMode) {
-    document.body.classList.add('dark')
+    document.body.classList.add('light')
   }
 })
 
