@@ -1,9 +1,8 @@
 <template>
   <div class="apropos-grid">
     <div class="apropos-texte">
-      <p class="apropos-label">À PROPOS</p>
       <h2 class="apropos-titre">
-        Je construis du web léger, souverain et sécurisé.
+        Je construis des sites <span class="typewriter">{{ texteAffiche }}</span><span class="curseur">|</span>
       </h2>
       <p class="apropos-bio">
         Je m'appelle Victor, je suis développeur web full stack, fondateur
@@ -69,6 +68,12 @@
 </template>
 
 <script setup>
+import { useTypewriter } from '../composables/useTyperWriter.js';
+
+
+const { texteAffiche } = useTypewriter([
+  "légers", "sécurisés", "éco-responsables", "souverains", "performants"
+])
 
 </script>
 
@@ -95,6 +100,7 @@
   line-height: 1.2;
   letter-spacing: 0.5px;
   margin-bottom: 28px;
+  min-height: 4em;
 }
 
 .apropos-bio {
@@ -146,6 +152,22 @@
   border-color: rgba(125, 211, 33, 0.25);
 }
 
+.typewriter {
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.curseur {
+  color: var(--green);
+  animation: clignoter 1s step-end infinite;
+}
+
+@keyframes clignoter {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+
 /* ── RESPONSIVE À PROPOS ──────────────────────────────────── */
 @media (max-width: 768px) {
   .apropos-grid {
@@ -158,4 +180,6 @@
     height: 56px;
   }
 }
+
+
 </style>
