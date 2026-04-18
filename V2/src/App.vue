@@ -33,6 +33,7 @@ onMounted(() => {
   if (ui.darkMode) {
     document.body.classList.add('light')
   }
+  if (ui.dyslexicMode) document.body.classList.add('dyslexic')
 })
 
 </script>
