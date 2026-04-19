@@ -7,13 +7,13 @@
     </RouterLink>
 
     <nav class="header-nav" :class="{ open: menuOuvert }" aria-label="Navigation principale">
-  <a href="#apropos" @click="fermerMenu">À propos</a>
-  <a href="#competences" @click="fermerMenu">Compétences</a>
-  <a href="#contact" @click="fermerMenu">Contact</a>
-</nav>
+      <a href="/#apropos" @click.prevent="navigateTo('#apropos')">À propos</a>
+      <a href="/#competences" @click.prevent="navigateTo('#competences')">Compétences</a>
+      <a href="/#contact" @click.prevent="navigateTo('#contact')">Contact</a>
+    </nav>
 
     <div class="header-right">
-      <a href="#contact" class="header-cta">CONTACT →</a>
+      <a href="/#contact" class="header-cta" @click.prevent="navigateTo('#contact')">CONTACT →</a>
       <button class="theme-toggle" @click="uiStore.toggleDarkMode" aria-label="Changer le thème">
         {{ uiStore.darkMode ? "🌙" : "☀️" }}
       </button>
@@ -32,9 +32,11 @@
 <script setup>
 
 import { ref, onMounted, onUnmounted } from "vue";
+import { useRouter } from "vue-router";
 import { useUiStore } from "../stores/ui.js";
 
 const uiStore = useUiStore()
+const router = useRouter()
 const isScrolled = ref(false)
 const menuOuvert = ref(false)
 
@@ -50,8 +52,16 @@ const fermerMenu = () => {
   menuOuvert.value = false
 }
 
+function navigateTo(hash) {
+  fermerMenu()
+  router.push("/").then(() => {
+    const el = document.querySelector(hash)
+    if (el) el.scrollIntoView({ behavior: "smooth" })
+  })
+}
+
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll, { passive: true})
+  window.addEventListener('scroll', handleScroll, { passive: true })
 })
 
 onUnmounted(() => {
@@ -62,7 +72,6 @@ onUnmounted(() => {
 
 
 <style scoped>
-
 .site-header {
   position: sticky;
   top: 0;
@@ -144,14 +153,17 @@ onUnmounted(() => {
 
 /* ── RESPONSIVE  ──────────────────────────────────── */
 @media (max-width: 768px) {
-  
+
   .site-header {
     padding: 0 20px;
     height: 56px;
   }
 
   /* Cache le CTA desktop et la nav desktop */
-  .header-cta { display: none; }
+  .header-cta {
+    display: none;
+  }
+
   .header-nav {
     display: none;
     position: fixed;
@@ -167,7 +179,9 @@ onUnmounted(() => {
     border-bottom: 1px solid var(--border);
   }
 
-  .header-nav.open { display: flex; }
+  .header-nav.open {
+    display: flex;
+  }
 
   .header-nav a {
     padding: 16px 0;
@@ -175,7 +189,9 @@ onUnmounted(() => {
     border-bottom: 1px solid var(--border);
   }
 
-  .header-nav a:last-child { border-bottom: none; }
+  .header-nav a:last-child {
+    border-bottom: none;
+  }
 
   /* Burger */
   .burger {
@@ -201,14 +217,24 @@ onUnmounted(() => {
   }
 
   /* Animation burger → croix */
-  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .burger.open span:nth-child(2) { opacity: 0; }
-  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .burger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
 
 }
 
 @media (min-width: 769px) {
-  .burger { display: none; }
+  .burger {
+    display: none;
+  }
 }
 
 .theme-toggle {
@@ -230,8 +256,4 @@ onUnmounted(() => {
 .theme-toggle:hover {
   border-color: var(--green);
 }
-
 </style>
-
-
-
