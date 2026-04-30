@@ -5,37 +5,26 @@
         Je construis des sites <span class="typewriter">{{ texteAffiche }}</span><span class="curseur">|</span>
       </h2>
       <p class="apropos-bio">
-        Je m'appelle Victor, je suis développeur web full stack, fondateur
-        de Dubby Code.
+        Je m'appelle Victor, je suis développeur web spécialisé dans l'éco-conception et la cybersécurité, fondateur de Dubby Code.
       </p>
       <p class="apropos-bio">
         Un bon site web, c'est un site qui respecte autant celui qui le
         visite que la planète qui l'héberge.
       </p>
       <p class="apropos-bio">
-        Dubby Code a des valeurs fortes : Green IT, performance,
-        souveraineté et sécurité qui se trouvent sur le même chemin. Pas
-        de dépendances inutiles, pas de ressources chargées depuis des
-        serveurs à l'autre bout du monde. Du code réfléchi ligne par ligne
-        pour être performant et sécurisé.
+        Dubby Code a des valeurs fortes : Green IT , performance, souveraineté et sécurité qui se trouvent sur le même chemin. Pas de dépendances inutiles, pas de ressources chargées depuis des serveurs à l'autre bout du monde. Du code réfléchi ligne par ligne pour être léger, performant et sécurisé.
       </p>
       <p class="apropos-bio">
-        Un site léger charge vite, consomme moins, dépend de moins de
-        tiers, et expose moins de surface d'attaque.
+        Un site léger charge vite, consomme moins, dépend de moins de tiers, et est moins exposé aux attaques.
       </p>
       <p class="apropos-bio">
-        Je construis des sites mobile-first sur mesure, performants,
-        sécurisés, qui protègent autant vos données que celles de vos
-        visiteurs.
+        Je construis des sites sur mesure, qui s’adaptent sur mobiles, tablettes, et ordinateurs, en veillant à l’accessibilité pour tous.
       </p>
       <p class="apropos-bio">
-        Ma pratique est orientée vers le renforcement de la sécurité
-        applicative et des audits, pour que vos projets ne soient pas
-        laissés avec des vulnérabilités.
+        Au-delà du code, ma pratique est orientée vers le renforcement de la sécurité de vos sites et l'identification de leurs failles, pour que vos projets ne soient pas laissés avec des vulnérabilités.
       </p>
       <p class="apropos-bio">
-        Si vous cherchez quelqu'un qui s'investit autant dans votre projet
-        que vous même, je suis à votre écoute.
+       Si vous cherchez quelqu'un qui s'investit autant dans votre projet que vous-même, je suis à votre écoute.
       </p>
     </div>
 

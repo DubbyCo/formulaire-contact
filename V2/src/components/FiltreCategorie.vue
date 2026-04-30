@@ -14,12 +14,17 @@ defineEmits(['changerFiltre'])
 
   <div class="filtres">
     <button
-    v-for="categorie in ['tous', 'dev', 'cyber', 'green']"
-    :key="categorie"
-    :class="{ actif: filtreActif === categorie }"
-    @click="$emit('changerFiltre', categorie)"
+    v-for="categorie in [
+      { valeur: 'tous', label: 'Tous' },
+      { valeur: 'dev', label: 'Dev' },
+      { valeur: 'cyber', label: 'Cyber' },
+      { valeur: 'green', label: 'Green' },
+  ]"
+    :key="categorie.valeur"
+    :class="{ actif: filtreActif === categorie.valeur }"
+    @click="$emit('changerFiltre', categorie.valeur)"
     >
-      {{ categorie }}
+      {{ categorie.label }}
   </button>
   </div>
   

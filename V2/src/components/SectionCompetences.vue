@@ -24,12 +24,12 @@ const filtreActif = ref('tous')
 
 const competences = ref([
   { id: 1, nom: 'HTML / CSS', niveau: 70, categorie: 'dev' },
-  { id: 2, nom: 'JavaScript', niveau: 40, categorie: 'dev' },
-  { id: 3, nom: 'Vue.js / Nuxt.js', niveau: 15, categorie: 'dev' },
-  { id: 4, nom: 'Node.js / Strapi', niveau: 5, categorie: 'dev' },
+  { id: 2, nom: 'JavaScript', niveau: 45, categorie: 'dev' },
+  { id: 3, nom: 'Vue.js / Nuxt.js', niveau: 20, categorie: 'dev' },
+  { id: 4, nom: 'Node.js / CMS', niveau: 5, categorie: 'dev' },
   { id: 5, nom: 'Green IT', niveau: 50, categorie: 'green' },
-  { id: 6, nom: 'Cybersécurité Web', niveau: 5, categorie: 'cyber' },
-  { id: 7, nom: 'Hebergement / VPS', niveau: 30, categorie: 'green' },
+  { id: 6, nom: 'Cybersécurité Web', niveau: 10, categorie: 'cyber' },
+  { id: 7, nom: 'Hébergement / VPS', niveau: 30, categorie: 'green' },
 ])
 
 const competencesFiltrees = computed(() => {
