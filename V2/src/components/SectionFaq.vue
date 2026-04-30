@@ -98,6 +98,7 @@ const basculer = (id) => {
 .faq-item.ouvert {
   background: var(--faint);
   padding: 0 16px;
+  border-color: var(--green);
 }
 
 .faq-reponse {

@@ -11,6 +11,7 @@
       <a href="/#competences" @click.prevent="navigateTo('#competences')" :class="{ active: sectionActive === 'competences' }" >Compétences</a>
       <a href="#services" @click.prevent="navigateTo('#services')" :class="{ active: sectionActive === 'services' }" >Services</a>
       <a href="/#contact" @click.prevent="navigateTo('#contact')" :class="{ active: sectionActive === 'contact' }" >Contact</a>
+      <a href="/#faq" @click.prevent="navigateTo('#faq')" :class="{ active: sectionActive === 'faq' }" >FAQ</a>
     </nav>
 
     <div class="header-right">
@@ -89,7 +90,7 @@ onMounted(async () => {
 
   await nextTick()
 
-  const sections = ['apropos', 'competences', 'services', 'contact']
+  const sections = ['apropos', 'competences', 'services', 'contact', 'faq']
 
   observer = new IntersectionObserver(
     (entries) => {

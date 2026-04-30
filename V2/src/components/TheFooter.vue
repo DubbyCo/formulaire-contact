@@ -7,6 +7,7 @@
       <a href="/#competences" @click.prevent="navigateTo('#competences')">Compétences</a>
       <a href="#services" @click.prevent="navigateTo('#services')">Services</a>
       <a href="/#contact" @click.prevent="navigateTo('#contact')">Contact</a>
+      <a href="/#faq" @click.prevent="navigateTo('#faq')">FAQ</a>
     </nav>
 
     <div class="footer-socials">

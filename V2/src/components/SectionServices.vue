@@ -12,6 +12,20 @@
         <ul class="card-non-inclus">
           <li v-for="point in service.nonInclus" :key="point">{{ point }}</li>
         </ul>
+        <div v-if="service.options && service.options.length" class="card-options-wrapper">
+  <button 
+    class="card-options-btn" 
+    @click="toggleOptions(service.titre)"
+  >
+    ⚙ Options
+    <ul class="card-options-bulle">
+      <li v-for="point in service.options" :key="point">{{ point }}</li>
+    </ul>
+  </button>
+  <ul v-if="optionsOuvertes === service.titre" class="card-options-mobile">
+    <li v-for="point in service.options" :key="point">{{ point }}</li>
+  </ul>
+</div>
         <div class="card-footer">
           <span class="card-prix">{{ service.prix }}</span>
           <button class="card-btn" @click="scrollVersContact">
@@ -80,7 +94,6 @@ const services = [
     titre: 'Landing Page',
     description: 'Une page unique sur-mesure, rapide et légère. Idéale pour un lancement, une offre ou une présence en ligne simple et efficace.',
     inclus: [
-      'Site conçu sur-mesure',
       'Adapté mobile, tablette et ordinateur',
       'Navigation + menu burger mobile',
       'Formulaire de contact',
@@ -88,15 +101,16 @@ const services = [
       'Code sécurisé',
       'Référencement optimisé',
       'Hébergement européen — 1ère année offerte',
-      'Déploiement et mise en ligne',
       '2 allers-retours de corrections',
+    ],
+    options : [
+      'Statistiques de visites',
     ],
     nonInclus: [
       'Rédaction des textes',
       'Création du logo',
       'Médias (Photos, vidéos, illustrations, fichiers)',
       'Achat du nom de domaine',
-      'Statistiques de visites (option disponible)',
     ],
     prix: '1 200€',
   },
@@ -108,17 +122,19 @@ const services = [
       'Tout le contenu de la Landing Page',
       'Jusqu\'à 5 pages personnalisées',
       'Blog / Vos actualités possible (compte comme une page)',
-      'Formation à la gestion du site',
       'Création d’un email pro : @mondomaine.fr',
       '2 allers-retours de corrections',
+    ],
+    options : [
+      'Page supplémentaire au-delà de 5 : +400€/page',
+      'Interface de gestion du contenu et formation option +200€',
+      'Statistiques de visites',
     ],
     nonInclus: [
       'Rédaction des textes',
       'Création du logo',
       'Médias (Photos, vidéos, illustrations, fichiers)',
       'Achat du nom de domaine',
-      'Page supplémentaire au-delà de 5 : +400€/page',
-      'Statistiques de visites (option disponible)',
     ],
     prix: '2 200€',
   },
@@ -134,15 +150,17 @@ const services = [
       '1 mois d\'hébergement offert',
       'Vérification complète post-migration',
     ],
+    options : [
+      'Boîte mail pro recréée (+50€ / boîte mail)',
+      'Migration des archives emails (sur devis)',
+      'Statistiques de visites',
+      'Maintenance mensuelle (abonnement séparé)',
+    ],
     nonInclus: [
       'Refonte du code ou du design',
       'Création de nouveaux contenus',
-      'Boîte mail pro recréée (option +50€ / boîte mail)',
-      'Migration des archives emails (sur devis)',
-      'Statistiques de visites (option disponible)',
-      'Maintenance mensuelle (abonnement séparé)',
     ],
-    prix: 'À partir de 150€ + devis',
+    prix: 'À partir de 150€',
   },
   {
     icon: '🛠️',
@@ -159,9 +177,8 @@ const services = [
       'Rédaction des textes',
       'Création du logo',
       'Photos et illustrations',
-      'Statistiques de visites (option disponible)',
     ],
-    prix: 'À partir de 1 000€',
+    prix: 'Dès 1 000€',
   },
   {
     icon: '🔄',
@@ -177,7 +194,6 @@ const services = [
     nonInclus: [
       'Modification de textes ou de contenu',
       'Nouvelles fonctionnalités',
-      'Statistiques de visites (option disponible)',
     ],
     prix: '100€ / mois',
   },
@@ -190,11 +206,13 @@ const services = [
       'Mises à jour du contenu de votre site · jusqu\'à 2h/mois',
       'Compte-rendu mensuel si besoin',
     ],
+    options : [
+      'Heures au-delà de 2h (sur devis)',
+      'Nouvelles fonctionnalités',
+      'Statistiques de visites',
+    ],
     nonInclus: [
       'Refonte ou redesign',
-      'Heures au-delà de 2h (sur devis)',
-      'Statistiques de visites (option disponible)',
-
     ],
     prix: '200€ / mois',
   },
@@ -206,6 +224,12 @@ function scrollVersContact() {
     const top = section.getBoundingClientRect().top + window.scrollY - 64
     window.scrollTo({ top, behavior: 'smooth' })
   }
+}
+
+const optionsOuvertes = ref(null)
+
+const toggleOptions = (titre) => {
+  optionsOuvertes.value = optionsOuvertes.value === titre ? null : titre
 }
 
 </script>
@@ -342,4 +366,94 @@ function scrollVersContact() {
 .card-btn:hover {
   opacity: 0.75;
 }
+
+
+.card-options-wrapper {
+  position: relative;
+}
+
+.card-options-btn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  position: relative;
+}
+
+.card-options-btn:hover {
+  color: var(--green);
+}
+
+/* Bulle desktop */
+.card-options-bulle {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  list-style: none;
+  width: 240px;
+  z-index: 10;
+  gap: 8px;
+  flex-direction: column;
+}
+
+.card-options-bulle li {
+  font-size: 12px;
+  color: var(--text);
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+.card-options-bulle li::before {
+  content: '⚙';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-size: 10px;
+}
+
+@media (min-width: 769px) {
+  .card-options-btn:hover .card-options-bulle {
+    display: flex;
+  }
+  .card-options-mobile {
+    display: none !important;
+  }
+}
+
+/* Liste mobile */
+.card-options-mobile {
+  list-style: none;
+  padding: 8px 0 0 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-options-mobile li {
+  font-size: 12px;
+  color: var(--text);
+  padding-left: 1.2rem;
+  position: relative;
+  opacity: 0.8;
+}
+
+.card-options-mobile li::before {
+  content: '⚙';
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-size: 10px;
+}
+
+
 </style>
