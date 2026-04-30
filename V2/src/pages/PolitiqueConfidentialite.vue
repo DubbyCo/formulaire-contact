@@ -1,5 +1,5 @@
 <template>
-  <main class="mentions-wrapper">
+  <div class="mentions-wrapper">
     <div class="mentions-container">
 
       <h1 class="mentions-title">Politique de confidentialité</h1>
@@ -84,7 +84,7 @@
       </section>
 
     </div>
-  </main>
+  </div>
 </template>
 
 <script setup>

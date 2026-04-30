@@ -1,3 +1,20 @@
+
+
+
+<template>
+
+<div class="carte">
+  <div class="carte-header">
+    <span class="nom">{{ nom }}</span>
+    <span class="niveau">{{ niveau }}%</span>
+  </div>
+  <div class="barre-fond">
+    <div class="barre-remplissage" :style="{ width: niveauAffiche + '%'}"></div>
+  </div>
+</div>
+
+</template>
+
 <script setup>
 
 import { ref, onMounted, onUnmounted } from "vue";
@@ -17,22 +34,6 @@ onMounted (() => {
 })
 
 </script>
-
-
-<template>
-
-<div class="carte">
-  <div class="carte-header">
-    <span class="nom">{{ nom }}</span>
-    <span class="niveau">{{ niveau }}%</span>
-  </div>
-  <div class="barre-fond">
-    <div class="barre-remplissage" :style="{ width: niveauAffiche + '%'}"></div>
-    <span class="categorie">{{ categorie }}</span>
-  </div>
-</div>
-
-</template>
 
 <style scoped>
 
@@ -73,12 +74,5 @@ onMounted (() => {
   transition: width 0.6s ease;
 }
 
-.categorie {
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 1px;
-  margin-top: 6px;
-  display: block;
-}
 
 </style>

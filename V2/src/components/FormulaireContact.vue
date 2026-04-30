@@ -1,5 +1,5 @@
 <template>
-  <div class="contact-card">
+  <div id="contact" class="contact-card">
     <div class="contact-accroche">
       <h2>Travaillons ensemble</h2>
       <p>Un projet web éco-responsable, une refonte, une question ?<br />
@@ -112,6 +112,7 @@ const soumettre = async () => {
 <style scoped>
 #contact {
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 

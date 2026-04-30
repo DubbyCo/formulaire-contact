@@ -5,6 +5,7 @@
     <nav class="footer-nav" aria-label="Navigation secondaire">
       <a href="/#apropos" @click.prevent="navigateTo('#apropos')">À propos</a>
       <a href="/#competences" @click.prevent="navigateTo('#competences')">Compétences</a>
+      <a href="#services" @click.prevent="navigateTo('#services')">Services</a>
       <a href="/#contact" @click.prevent="navigateTo('#contact')">Contact</a>
     </nav>
 
@@ -12,12 +13,13 @@
       <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="https://linkedin.com/in/victor-ivanoff-developpeur-web" target="_blank"
         rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://www.malt.fr/" target="_blank" rel="noopener noreferrer">Malt</a>
+      <a href="https://www.malt.fr/profile/victorivanoff" target="_blank" rel="noopener noreferrer">Malt</a>
     </div>
 
     <p class="footer-legal">
       <RouterLink to="/mentions-legales">Mentions légales</RouterLink>
       · <RouterLink to="/politique-de-confidentialite">Politique de confidentialité</RouterLink>
+      · <RouterLink to="/cgv">CGV</RouterLink>
       · Hébergé chez Infomaniak · Zéro tracker · Énergie renouvelable
     </p>
   </footer>
@@ -29,10 +31,23 @@ import { useRouter } from "vue-router"
 const router = useRouter()
 
 function navigateTo(hash) {
-  router.push("/").then(() => {
+  if (router.currentRoute.value.path !== '/') {
+    router.push('/').then(() => {
+      setTimeout(() => {
+        const el = document.querySelector(hash)
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY - 64
+          window.scrollTo({ top, behavior: 'smooth' })
+        }
+      }, 100)
+    })
+  } else {
     const el = document.querySelector(hash)
-    if (el) el.scrollIntoView({ behavior: "smooth" })
-  })
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 64
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+  }
 }
 </script>
 

@@ -30,7 +30,7 @@ import TheScrollTop from "./components/TheScrollTop.vue";
 const ui = useUiStore ()
 
 onMounted(() => {
-  if (ui.darkMode) {
+  if (!ui.darkMode) {
     document.body.classList.add('light')
   }
   if (ui.dyslexicMode) document.body.classList.add('dyslexic')

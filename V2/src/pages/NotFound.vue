@@ -17,14 +17,14 @@
 
 h1 {
   font-size: 5rem;
-  color: #42b883;
+  color: var(--green);
   margin-bottom: 16px;
 }
 
 a {
   display: inline-block;
   margin-top: 24px;
-  color: #42b883;
+  color: var(--green);
   font-weight: bold;
 }
 

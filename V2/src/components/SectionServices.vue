@@ -1,7 +1,7 @@
 <template>
   <section id="services" class="section-services">
     <h2 class="section-titre">Services</h2>
-    <div class="grille-services">
+    <div class="grille-services" ref="grille">
       <div v-for="service in services" :key="service.titre" class="card-service">
         <div class="card-icone">{{ service.icon }}</div>
         <h3 class="card-titre">{{ service.titre }}</h3>
@@ -25,13 +25,62 @@
 
 <script setup>
 
+import { ref, onMounted, onUnmounted, nextTick } from "vue";
+
+const grille = ref(null)
+let observer = null
+
+onMounted(async () => {
+  await nextTick()
+
+  const cartes = grille.value?.querySelectorAll('.card-service')
+  if (!cartes) return
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible')
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.15 }
+  )
+
+  const largeur = window.innerWidth
+
+  cartes.forEach((carte) => {
+    const rect = carte.getBoundingClientRect()
+    const centreEcran = largeur / 2
+
+    if (largeur < 768) {
+      carte.classList.add('fade-in')
+    } else if (rect.left + rect.width / 2 < largeur / 3) {
+      carte.classList.add('fade-left')
+    } else if (rect.left + rect.width / 2 > (largeur * 2) / 3) {
+      carte.classList.add('fade-right')
+    } else {
+      carte.classList.add('fade-in')
+    }
+
+    observer.observe(carte)
+  })
+})
+
+onUnmounted(() => {
+  if (observer) observer.disconnect()
+})
+
+
+
 const services = [
   {
     icon: '🎯',
     titre: 'Landing Page',
     description: 'Une page unique sur-mesure, rapide et légère. Idéale pour un lancement, une offre ou une présence en ligne simple et efficace.',
     inclus: [
-      'Site conçu sur-mesure, sans template',
+      'Site conçu sur-mesure',
       'Adapté mobile, tablette et ordinateur',
       'Navigation + menu burger mobile',
       'Formulaire de contact',
@@ -54,15 +103,14 @@ const services = [
   {
     icon: '🖥️',
     titre: 'Site vitrine 3–5 pages',
-    description: 'Un site multi-pages pour présenter votre activité, vos services et vous démarquer. Blog inclus si souhaité.',
+    description: 'Un site multi-pages pour présenter votre activité, vos services et vous démarquer.',
     inclus: [
       'Tout le contenu de la Landing Page',
       'Jusqu\'à 5 pages personnalisées',
-      'Blog / vos actualités possible (compte comme une page)',
+      'Blog / Vos actualités possible (compte comme une page)',
       'Formation à la gestion du site',
       'Création d’un email pro : @mondomaine.fr',
       '2 allers-retours de corrections',
-      //* manque 2-3 lignes ici
     ],
     nonInclus: [
       'Rédaction des textes',
@@ -77,30 +125,32 @@ const services = [
   {
     icon: '🚚',
     titre: 'Migration souveraine',
-    description: 'Migration de votre site vers une infrastructure souveraine — 100% européenne. Zéro interruption, conforme RGPD.',
+    description: 'Migration de votre site vers une infrastructure souveraine — 100% européenne. Zéro interruption, conforme RGPD. Devis sur mesure selon la configuration de votre site.',
     inclus: [
       'Audit de l\'hébergement actuel',
       'Migration des fichiers et base de données',
       'Configuration DNS + HTTPS',
-      'Boîte mail pro recréée à l\'identique',
       'Zéro interruption visible pour vos visiteurs',
-      '1 aller-retour de correction inclus',
+      '1 mois d\'hébergement offert',
+      'Vérification complète post-migration',
     ],
     nonInclus: [
       'Refonte du code ou du design',
       'Création de nouveaux contenus',
-      'Migration des archives emails (option +200€)',
+      'Boîte mail pro recréée (option +50€ / boîte mail)',
+      'Migration des archives emails (sur devis)',
       'Statistiques de visites (option disponible)',
+      'Maintenance mensuelle (abonnement séparé)',
     ],
-    prix: '700€',
+    prix: 'À partir de 150€ + devis',
   },
   {
     icon: '🛠️',
     titre: 'Refonte',
-    description: 'Votre site repensé selon vos besoins — du simple nettoyage technique à la refonte complète avec des nouvelles fonctionnalités.',
+    description: 'Votre site repensé selon vos besoins — du simple nettoyage technique à la refonte complète avec des nouvelles fonctionnalités. Devis sur mesure.',
     inclus: [
       'Technique uniquement — code propre, perfs, SEO',
-      'Technique + redesign visuel sur brief',
+      'Technique + refonte visuelle',
       'Refonte complète avec nouvelles fonctionnalités',
       'Hébergement européen — 1ère année offerte',
       '2 allers-retours de corrections inclus',
@@ -111,15 +161,15 @@ const services = [
       'Photos et illustrations',
       'Statistiques de visites (option disponible)',
     ],
-    prix: 'dès 1 000€',
+    prix: 'À partir de 1 000€',
   },
   {
     icon: '🔄',
-    titre: 'Maintenance · Niveau 1',
-    description: 'Surveillance et bon fonctionnement du site. Aucune modification de contenu. Idéal pour rester serein sans gérer la technique.',
+    titre: 'Maintenance mensuelle · Niveau 1',
+    description: 'Surveillance du bon fonctionnement du site. Aucune modification de contenu. Idéal pour rester serein sans gérer la technique.',
     inclus: [
-      'Surveillance du bon fonctionnement du site',
-      'Correction de bug techniques',
+      'Maintenance du serveur et des logiciels',
+      'Correction de bugs techniques',
       'Mises à jour des dépendances (si nécessaire)',
       'Vérification et ajustement de la sécurité',
       '1 intervention de maintenance par mois',
@@ -136,13 +186,13 @@ const services = [
     titre: 'Maintenance mensuelle · Niveau 2',
     description: 'Technique + mises à jour de contenu. Déléguez entièrement la gestion de votre site.',
     inclus: [
-      'Tout ce qui est inclus dans la maintenance technique',
-      'Mises à jour de contenu — jusqu\'à 2h/mois',
+      'Tout ce qui est inclus dans la maintenance de Niveau 1',
+      'Mises à jour du contenu de votre site · jusqu\'à 2h/mois',
       'Compte-rendu mensuel si besoin',
     ],
     nonInclus: [
       'Refonte ou redesign',
-      'Heures au-delà de 2h',
+      'Heures au-delà de 2h (sur devis)',
       'Statistiques de visites (option disponible)',
 
     ],
@@ -153,11 +203,13 @@ const services = [
 function scrollVersContact() {
   const section = document.getElementById('contact')
   if (section) {
-    section.scrollIntoView({ behavior: 'smooth' })
+    const top = section.getBoundingClientRect().top + window.scrollY - 64
+    window.scrollTo({ top, behavior: 'smooth' })
   }
 }
 
 </script>
+
 
 <style scoped>
 .section-services {
@@ -167,10 +219,11 @@ function scrollVersContact() {
 }
 
 .section-titre {
-  font-family: 'Syne', sans-serif;
   font-size: 2rem;
   margin-bottom: 2.5rem;
   text-align: center;
+  color: var(--text);
+  font-weight: 700;
 }
 
 .grille-services {

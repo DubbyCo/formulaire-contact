@@ -1,5 +1,5 @@
 <template>
-  <div class="apropos-grid">
+  <div id="apropos" class="apropos-grid">
     <div class="apropos-texte">
       <h2 class="apropos-titre">
         Je construis des sites <span class="typewriter">{{ texteAffiche }}</span><span class="curseur">|</span>

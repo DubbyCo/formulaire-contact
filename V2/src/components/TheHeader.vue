@@ -7,17 +7,24 @@
     </RouterLink>
 
     <nav class="header-nav" :class="{ open: menuOuvert }" aria-label="Navigation principale">
-      <a href="/#apropos" @click.prevent="navigateTo('#apropos')">À propos</a>
-      <a href="/#competences" @click.prevent="navigateTo('#competences')">Compétences</a>
-      <a href="/#contact" @click.prevent="navigateTo('#contact')">Contact</a>
+      <a href="/#apropos" @click.prevent="navigateTo('#apropos')" :class="{ active: sectionActive === 'apropos' }">À propos</a>
+      <a href="/#competences" @click.prevent="navigateTo('#competences')" :class="{ active: sectionActive === 'competences' }" >Compétences</a>
+      <a href="#services" @click.prevent="navigateTo('#services')" :class="{ active: sectionActive === 'services' }" >Services</a>
+      <a href="/#contact" @click.prevent="navigateTo('#contact')" :class="{ active: sectionActive === 'contact' }" >Contact</a>
     </nav>
 
     <div class="header-right">
       <a href="/#contact" class="header-cta" @click.prevent="navigateTo('#contact')">CONTACT →</a>
+
+      <button class="dyslexic-toggle" :class="{ active: uiStore.dyslexicMode }" @click="uiStore.toggleDyslexicMode"
+        :aria-label="uiStore.dyslexicMode ? 'Désactiver le mode dyslexique' : 'Activer le mode dyslexique'">
+        Aa
+      </button>
+
       <button class="theme-toggle" @click="uiStore.toggleDarkMode" aria-label="Changer le thème">
         {{ uiStore.darkMode ? "🌙" : "☀️" }}
       </button>
-      <button class="burger" :class="{ open: menuOuvert }" @click="toggleMenu" aria-expanded="menuOuvert"
+      <button class="burger" :class="{ open: menuOuvert }" @click="toggleMenu" :aria-expanded="menuOuvert.toString()"
         aria-label="Ouvrir le menu">
         <span></span>
         <span></span>
@@ -31,7 +38,7 @@
 
 <script setup>
 
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted ,nextTick} from "vue";
 import { useRouter } from "vue-router";
 import { useUiStore } from "../stores/ui.js";
 
@@ -39,6 +46,7 @@ const uiStore = useUiStore()
 const router = useRouter()
 const isScrolled = ref(false)
 const menuOuvert = ref(false)
+const sectionActive = ref('')
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 30
@@ -54,19 +62,57 @@ const fermerMenu = () => {
 
 function navigateTo(hash) {
   fermerMenu()
-  router.push("/").then(() => {
+  if (router.currentRoute.value.path !== '/') {
+    router.push('/').then(() => {
+      setTimeout(() => {
+        const el = document.querySelector(hash)
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY - 64
+          window.scrollTo({ top, behavior: 'smooth' })
+        }
+      }, 100)
+    })
+  } else {
     const el = document.querySelector(hash)
-    if (el) el.scrollIntoView({ behavior: "smooth" })
-  })
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 64
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+  }
 }
 
-onMounted(() => {
-  window.addEventListener('scroll', handleScroll, { passive: true })
+
+let observer = null
+
+onMounted(async () => {
+  window.addEventListener('scroll', handleScroll, { passive: true} )
+
+  await nextTick()
+
+  const sections = ['apropos', 'competences', 'services', 'contact']
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          sectionActive.value = entry.target.id
+        }
+      })
+    },
+    { threshold: 0.3 }
+  )
+
+  sections.forEach((id) => {
+    const el = document.getElementById(id)
+    if (el) observer.observe(el)
+  })
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  if (observer) observer.disconnect()
 })
+
 
 </script>
 
@@ -119,6 +165,13 @@ onUnmounted(() => {
   letter-spacing: 0.8px;
   font-weight: 600;
   transition: color 0.2s;
+}
+
+.header-nav :deep(a.active) {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--green);
+  text-underline-offset: 4px;
 }
 
 .header-nav :deep(a:hover) {
@@ -256,4 +309,37 @@ onUnmounted(() => {
 .theme-toggle:hover {
   border-color: var(--green);
 }
+
+.dyslexic-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.dyslexic-toggle:hover {
+  border-color: var(--green);
+}
+
+.dyslexic-toggle:active {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.dyslexic-toggle.active {
+  border-color: var(--green);
+  color: var(--green);
+}
+
 </style>

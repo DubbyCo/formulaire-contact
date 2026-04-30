@@ -145,17 +145,34 @@ main {
 
 .fade-in {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(100px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
 }
 
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+.fade-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
 }
+
+.fade-right {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.fade-in.visible,
+.fade-left.visible,
+.fade-right.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-in {
+  .fade-in,
+  .fade-left,
+  .fade-right {
     transition: none;
     opacity: 1;
     transform: none;

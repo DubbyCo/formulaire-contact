@@ -1,3 +1,19 @@
+<template>
+
+  <section id="competences" class="section-competences">
+    <h2>Mes compétences</h2>
+
+    <FiltreCategorie :filtreActif="filtreActif" @changerFiltre="filtreActif = $event" />
+
+    <TransitionGroup tag="div" class="grille" name="carte">
+      <CarteCompetence v-for="competence in competencesFiltrees" :key="competence.id" :nom="competence.nom"
+        :niveau="competence.niveau" :categorie="competence.categorie" />
+    </TransitionGroup>
+
+  </section>
+
+</template>
+
 <script setup>
 
 import { ref, computed } from "vue";
@@ -25,22 +41,6 @@ const competencesFiltrees = computed(() => {
 
 </script>
 
-<template>
-
-  <section class="section-competences">
-    <h2>Mes compétences</h2>
-
-    <FiltreCategorie :filtreActif="filtreActif" @changerFiltre="filtreActif = $event" />
-
-    <TransitionGroup tag="div" class="grille" name="carte">
-      <CarteCompetence v-for="competence in competencesFiltrees" :key="competence.id" :nom="competence.nom"
-        :niveau="competence.niveau" :categorie="competence.categorie" />
-    </TransitionGroup>
-
-  </section>
-
-</template>
-
 <style scoped>
 
 .section-competences {
@@ -55,6 +55,13 @@ const competencesFiltrees = computed(() => {
 
 #competences {
   padding-bottom: 20px;
+}
+
+.section-competences h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2rem;
 }
 
 </style>
