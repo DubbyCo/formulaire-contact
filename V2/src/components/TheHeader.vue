@@ -23,7 +23,7 @@
       </button>
 
       <button class="theme-toggle" @click="uiStore.toggleDarkMode" aria-label="Changer le thème">
-        {{ uiStore.darkMode ? "🌙" : "☀️" }}
+        {{ uiStore.darkMode ? "☀️" : "🌙" }}
       </button>
       <button class="burger" :class="{ open: menuOuvert }" @click="toggleMenu" :aria-expanded="menuOuvert.toString()"
         aria-label="Ouvrir le menu">
@@ -100,7 +100,7 @@ onMounted(async () => {
         }
       })
     },
-    { threshold: 0.3 }
+    { threshold: 0.15 }
   )
 
   sections.forEach((id) => {

@@ -6,7 +6,11 @@ export const useUiStore = defineStore("ui", () => {
 
   const toggleDarkMode = () => {
     darkMode.value = !darkMode.value;
-    document.body.classList.toggle("light");
+    if (darkMode.value) {
+      document.body.classList.remove('light')
+    } else {
+      document.body.classList.add('light')
+    }
   };
 
   const dyslexicMode = useLocalStorage("dyslexicMode", false);
