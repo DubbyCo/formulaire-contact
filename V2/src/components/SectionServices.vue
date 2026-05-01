@@ -3,8 +3,10 @@
     <h2 class="section-titre">Services</h2>
     <div class="grille-services" ref="grille">
       <div v-for="service in services" :key="service.titre" class="card-service">
-        <div class="card-icone">{{ service.icon }}</div>
-        <h3 class="card-titre">{{ service.titre }}</h3>
+        <div class="card-header">
+          <component :is="icones[service.icone]" :size="24" :stroke-width="1.5" color="var(--green)" />
+          <h3 class="card-titre">{{ service.titre }}</h3>
+        </div>
         <p class="card-description">{{ service.description }}</p>
         <ul class="card-inclus">
           <li v-for="point in service.inclus" :key="point">{{ point }}</li>
@@ -13,15 +15,13 @@
           <li v-for="point in service.nonInclus" :key="point">{{ point }}</li>
         </ul>
         <div v-if="service.options && service.options.length" class="card-options-wrapper">
-  <button 
-    class="card-options-btn" 
-    @click="toggleOptions(service.titre)"
-  >
-    ⚙ Options
-    <ul class="card-options-bulle">
-      <li v-for="point in service.options" :key="point">{{ point }}</li>
-    </ul>
+  <button class="card-options-btn" @click="toggleOptions(service.titre)">
+    <SlidersHorizontal :size="14" :stroke-width="1.5" color="var(--green)" />
+    Options
   </button>
+  <ul class="card-options-bulle">
+    <li v-for="point in service.options" :key="point">{{ point }}</li>
+  </ul>
   <ul v-if="optionsOuvertes === service.titre" class="card-options-mobile">
     <li v-for="point in service.options" :key="point">{{ point }}</li>
   </ul>
@@ -40,6 +40,9 @@
 <script setup>
 
 import { ref, onMounted, onUnmounted, nextTick } from "vue";
+import { Zap, Monitor, HardDriveDownload, Wrench, RefreshCw, MonitorCog, SlidersHorizontal, SlidersHorizontalIcon } from 'lucide-vue-next'
+
+const icones = { Zap, Monitor, HardDriveDownload, Wrench, RefreshCw, MonitorCog, SlidersHorizontal }
 
 const grille = ref(null)
 let observer = null
@@ -90,12 +93,11 @@ onUnmounted(() => {
 
 const services = [
   {
-    icon: '🎯',
+    icone: 'Zap',
     titre: 'Landing Page',
     description: 'Une page unique sur-mesure, rapide et légère. Idéale pour un lancement, une offre ou une présence en ligne simple et efficace.',
     inclus: [
       'Adapté mobile, tablette et ordinateur',
-      'Navigation + menu burger mobile',
       'Formulaire de contact',
       'Conforme au RGPD',
       'Code sécurisé',
@@ -103,7 +105,7 @@ const services = [
       'Hébergement européen — 1ère année offerte',
       '2 allers-retours de corrections',
     ],
-    options : [
+    options: [
       'Statistiques de visites',
     ],
     nonInclus: [
@@ -115,7 +117,7 @@ const services = [
     prix: '1 200€',
   },
   {
-    icon: '🖥️',
+    icone: 'Monitor',
     titre: 'Site vitrine 3–5 pages',
     description: 'Un site multi-pages pour présenter votre activité, vos services et vous démarquer.',
     inclus: [
@@ -125,7 +127,7 @@ const services = [
       'Création d’un email pro : @mondomaine.fr',
       '2 allers-retours de corrections',
     ],
-    options : [
+    options: [
       'Page supplémentaire au-delà de 5 : +400€/page',
       'Interface de gestion du contenu et formation option +200€',
       'Statistiques de visites',
@@ -139,7 +141,7 @@ const services = [
     prix: '2 200€',
   },
   {
-    icon: '🚚',
+    icone: 'HardDriveDownload',
     titre: 'Migration souveraine',
     description: 'Migration de votre site vers une infrastructure souveraine — 100% européenne. Zéro interruption, conforme RGPD. Devis sur mesure selon la configuration de votre site.',
     inclus: [
@@ -150,7 +152,7 @@ const services = [
       '1 mois d\'hébergement offert',
       'Vérification complète post-migration',
     ],
-    options : [
+    options: [
       'Boîte mail pro recréée (+50€ / boîte mail)',
       'Migration des archives emails (sur devis)',
       'Statistiques de visites',
@@ -163,7 +165,7 @@ const services = [
     prix: 'À partir de 150€',
   },
   {
-    icon: '🛠️',
+    icone: 'Wrench',
     titre: 'Refonte',
     description: 'Votre site repensé selon vos besoins — du simple nettoyage technique à la refonte complète avec des nouvelles fonctionnalités. Devis sur mesure.',
     inclus: [
@@ -181,7 +183,7 @@ const services = [
     prix: 'Dès 1 000€',
   },
   {
-    icon: '🔄',
+    icone: 'RefreshCw',
     titre: 'Maintenance mensuelle · Niveau 1',
     description: 'Surveillance du bon fonctionnement du site. Aucune modification de contenu. Idéal pour rester serein sans gérer la technique.',
     inclus: [
@@ -198,7 +200,7 @@ const services = [
     prix: '100€ / mois',
   },
   {
-    icon: '🔄🛠️',
+    icone: 'MonitorCog',
     titre: 'Maintenance mensuelle · Niveau 2',
     description: 'Technique + mises à jour de contenu. Déléguez entièrement la gestion de votre site.',
     inclus: [
@@ -206,7 +208,7 @@ const services = [
       'Mises à jour du contenu de votre site · jusqu\'à 2h/mois',
       'Compte-rendu mensuel si besoin',
     ],
-    options : [
+    options: [
       'Heures au-delà de 2h (sur devis)',
       'Nouvelles fonctionnalités',
       'Statistiques de visites',
@@ -272,12 +274,19 @@ const toggleOptions = (titre) => {
   border-color: var(--green);
 }
 
-.card-icone {
-  font-size: 1.5rem;
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .card-titre {
-  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.card-titre {
   font-size: 1.2rem;
   font-weight: 700;
 }
@@ -357,7 +366,6 @@ const toggleOptions = (titre) => {
   border-radius: 8px;
   background: var(--grad-btn);
   color: #000000;
-  font-family: 'Syne', sans-serif;
   font-size: 0.8rem;
   cursor: pointer;
   transition: opacity 0.2s ease;
@@ -373,6 +381,9 @@ const toggleOptions = (titre) => {
 }
 
 .card-options-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   background: transparent;
   border: none;
   color: var(--muted);
@@ -421,9 +432,10 @@ const toggleOptions = (titre) => {
 }
 
 @media (min-width: 769px) {
-  .card-options-btn:hover .card-options-bulle {
+  .card-options-btn:hover + .card-options-bulle {
     display: flex;
   }
+
   .card-options-mobile {
     display: none !important;
   }
@@ -454,6 +466,4 @@ const toggleOptions = (titre) => {
   color: var(--green);
   font-size: 10px;
 }
-
-
 </style>
