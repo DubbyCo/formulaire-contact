@@ -39,7 +39,7 @@
 
 <script setup>
 
-import { ref, onMounted, onUnmounted ,nextTick} from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
 import { useUiStore } from "../stores/ui.js";
 
@@ -47,10 +47,25 @@ const uiStore = useUiStore()
 const router = useRouter()
 const isScrolled = ref(false)
 const menuOuvert = ref(false)
-const sectionActive = ref('')
+const sectionActive = ref('apropos')
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 30
+
+  const sections = ['apropos', 'competences', 'services', 'contact', 'faq']
+  const milieu = window.scrollY + window.innerHeight / 3
+
+  let current = ''
+  sections.forEach((id) => {
+    const el = document.getElementById(id)
+    if (!el) return
+    const top = el.offsetTop
+    const bottom = top + el.offsetHeight
+    if (milieu >= top && milieu <= bottom) {
+      current = id
+    }
+  })
+  sectionActive.value = current
 }
 
 const toggleMenu = () => {
@@ -82,31 +97,8 @@ function navigateTo(hash) {
   }
 }
 
-
-let observer = null
-
-onMounted(async () => {
-  window.addEventListener('scroll', handleScroll, { passive: true} )
-
-  await nextTick()
-
-  const sections = ['apropos', 'competences', 'services', 'contact', 'faq']
-
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          sectionActive.value = entry.target.id
-        }
-      })
-    },
-    { threshold: 0.15 }
-  )
-
-  sections.forEach((id) => {
-    const el = document.getElementById(id)
-    if (el) observer.observe(el)
-  })
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
 })
 
 onUnmounted(() => {
