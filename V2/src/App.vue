@@ -18,26 +18,22 @@
 
 <script setup>
 
-import { onMounted } from "vue";
+import { onMounted } from "vue"
+import { useUiStore } from "./stores/ui.js"
 
-import { useUiStore } from "./stores/ui.js";
+import TheHeader from "./components/TheHeader.vue"
+import TheMarquee from "./components/TheMarquee.vue"
+import TheFooter from "./components/TheFooter.vue"
+import TheScrollTop from "./components/TheScrollTop.vue"
 
-import TheHeader from "./components/TheHeader.vue";
-import TheMarquee from "./components/TheMarquee.vue";
-import TheFooter from "./components/TheFooter.vue";
-import TheScrollTop from "./components/TheScrollTop.vue";
-
-const ui = useUiStore ()
+const ui = useUiStore()
 
 onMounted(() => {
-  if (!ui.darkMode) {
-    document.body.classList.add('light')
-  }
+  if (!ui.darkMode) document.body.classList.add('light')
   if (ui.dyslexicMode) document.body.classList.add('dyslexic')
 })
 
 </script>
-
 
 
 

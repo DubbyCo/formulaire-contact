@@ -79,20 +79,24 @@ const fermerMenu = () => {
 function navigateTo(hash) {
   fermerMenu()
   if (router.currentRoute.value.path !== '/') {
-    router.push('/').then(() => {
-      setTimeout(() => {
-        const el = document.querySelector(hash)
-        if (el) {
-          const top = el.getBoundingClientRect().top + window.scrollY - 64
-          window.scrollTo({ top, behavior: 'smooth' })
-        }
-      }, 100)
-    })
+    router.push({ path: '/', hash }).then(() => {
+  setTimeout(() => {
+    const el = document.querySelector(hash)
+    if (el) {
+      window.scrollTo({
+        top: el.offsetTop,
+        behavior: 'smooth'
+      })
+    }
+  }, 600)
+})
   } else {
     const el = document.querySelector(hash)
     if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 64
-      window.scrollTo({ top, behavior: 'smooth' })
+      window.scrollTo({
+        top: el.offsetTop - 64,
+        behavior: 'smooth'
+      })
     }
   }
 }
