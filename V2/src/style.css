@@ -102,7 +102,7 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-image: url('/public/topo-dubby.svg');
+  background-image: url('/topo-dubby.svg');
   background-size: cover;
   background-position: center;
   opacity: 0.1;
