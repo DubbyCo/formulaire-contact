@@ -5,29 +5,33 @@
         Je construis des sites <span class="typewriter">{{ texteAffiche }}</span><span class="curseur">|</span>
       </h2>
       <p class="apropos-bio">
-        Je m'appelle Victor, je suis développeur web spécialisé dans l'éco-conception et la cybersécurité, fondateur de Dubby Code.
+        Je m'appelle Victor, je suis développeur web spécialisé dans l'éco-conception et la cybersécurité, fondateur de
+        Dubby Code.
       </p>
       <p class="apropos-bio">
         Un bon site web, c'est un site qui respecte autant celui qui le
         visite que la planète qui l'héberge.
       </p>
       <p class="apropos-bio">
-        Dubby Code a des valeurs fortes : Green IT , performance, souveraineté et sécurité qui se trouvent sur le même chemin. Pas de dépendances inutiles, pas de ressources chargées depuis des serveurs à l'autre bout du monde. Du code réfléchi ligne par ligne pour être léger, performant et sécurisé.
+        Dubby Code a des valeurs fortes : Green IT , performance, souveraineté et sécurité qui se trouvent sur le même
+        chemin. Pas de dépendances inutiles, pas de ressources chargées depuis des serveurs à l'autre bout du monde. Du
+        code réfléchi ligne par ligne pour être léger, performant et sécurisé.
       </p>
       <p class="apropos-bio">
         Un site léger charge vite, consomme moins, dépend de moins de tiers, et est moins exposé aux attaques.
       </p>
       <p class="apropos-bio">
-        Je construis des sites sur mesure, qui s’adaptent sur mobiles, tablettes, et ordinateurs, en veillant à l’accessibilité pour tous.
+        Je construis des sites sur mesure, qui s’adaptent sur mobiles, tablettes, et ordinateurs, en veillant à
+        l’accessibilité pour tous.
       </p>
       <p class="apropos-bio">
-        Au-delà du code, ma pratique est orientée vers le renforcement de la sécurité de vos sites et l'identification de leurs failles, pour que vos projets ne soient pas laissés avec des vulnérabilités.
+        Au-delà du code, ma pratique est orientée vers le renforcement de la sécurité de vos sites et l'identification
+        de leurs failles, pour que vos projets ne soient pas laissés avec des vulnérabilités.
       </p>
       <p class="apropos-bio">
-       Si vous cherchez quelqu'un qui s'investit autant dans votre projet que vous-même, je suis à votre écoute.
+        Si vous cherchez quelqu'un qui s'investit autant dans votre projet que vous-même, je suis à votre écoute.
       </p>
     </div>
-
     <div class="apropos-side">
       <div class="apropos-card">
         <p class="apropos-bloc-label">VALEURS</p>
@@ -40,7 +44,6 @@
           <span class="tag">🔍 RGPD</span>
         </div>
       </div>
-
       <div class="apropos-card">
         <p class="apropos-bloc-label">STACK</p>
         <div class="tag-list">
@@ -57,7 +60,7 @@
 </template>
 
 <script setup>
-import { useTypewriter } from '../composables/useTyperWriter.js';
+import { useTypewriter } from '../composables/useTypeWriter.js';
 
 
 const { texteAffiche } = useTypewriter([
@@ -67,7 +70,6 @@ const { texteAffiche } = useTypewriter([
 </script>
 
 <style scoped>
-
 .apropos-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -106,7 +108,6 @@ const { texteAffiche } = useTypewriter([
   justify-content: center;
 }
 
-/* Card — même style que .contact-card */
 .apropos-card {
   background: var(--faint);
   border: 1px solid var(--border);
@@ -152,31 +153,37 @@ const { texteAffiche } = useTypewriter([
 }
 
 @keyframes clignoter {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
-
-/* ── RESPONSIVE À PROPOS ──────────────────────────────────── */
 @media (max-width: 768px) {
   .apropos-grid {
     grid-template-columns: 1fr;
     gap: 40px;
     padding: 40px 0;
   }
+
   .site-header {
     padding: 0 20px;
     height: 56px;
   }
-    .typewriter, .curseur {
+
+  .typewriter,
+  .curseur {
     display: none;
   }
-  
+
   .apropos-titre::after {
     content: " éco-responsables.";
     color: var(--green);
   }
 }
-
-
 </style>

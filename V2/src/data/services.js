@@ -1,0 +1,128 @@
+export const services = [
+  {
+    icone: 'Zap',
+    titre: 'Landing Page',
+    description: 'Une page unique sur-mesure, rapide et légère. Idéale pour un lancement, une offre ou une présence en ligne simple et efficace.',
+    inclus: [
+      'Adapté mobile, tablette et ordinateur',
+      'Formulaire de contact',
+      'Conforme au RGPD',
+      'Code sécurisé',
+      'Référencement optimisé',
+      'Hébergement européen — 1ère année offerte',
+      '2 allers-retours de corrections',
+    ],
+    options: [
+      'Statistiques de visites',
+    ],
+    nonInclus: [
+      'Rédaction des textes',
+      'Création du logo',
+      'Médias (Photos, vidéos, illustrations, fichiers)',
+      'Achat du nom de domaine',
+    ],
+    prix: '1 200€',
+  },
+  {
+    icone: 'Monitor',
+    titre: 'Site vitrine 3–5 pages',
+    description: 'Un site multi-pages pour présenter votre activité, vos services et vous démarquer.',
+    inclus: [
+      'Tout le contenu de la Landing Page',
+      'Jusqu\'à 5 pages personnalisées',
+      'Blog / Vos actualités possible (compte comme une page)',
+      'Création d’un email pro : @mondomaine.fr',
+      '2 allers-retours de corrections',
+    ],
+    options: [
+      'Page supplémentaire au-delà de 5 : +400€/page',
+      'Interface de gestion du contenu et formation option +200€',
+      'Statistiques de visites',
+    ],
+    nonInclus: [
+      'Rédaction des textes',
+      'Création du logo',
+      'Médias (Photos, vidéos, illustrations, fichiers)',
+      'Achat du nom de domaine',
+    ],
+    prix: '2 200€',
+  },
+  {
+    icone: 'HardDriveDownload',
+    titre: 'Migration souveraine',
+    description: 'Migration de votre site vers une infrastructure souveraine — 100% européenne. Zéro interruption, conforme RGPD. Devis sur mesure selon la configuration de votre site.',
+    inclus: [
+      'Audit de l\'hébergement actuel',
+      'Migration des fichiers et base de données',
+      'Configuration DNS + HTTPS',
+      'Zéro interruption visible pour vos visiteurs',
+      '1 mois d\'hébergement offert',
+      'Vérification complète post-migration',
+    ],
+    options: [
+      'Boîte mail pro recréée (+50€ / boîte mail)',
+      'Migration des archives emails (sur devis)',
+      'Statistiques de visites',
+      'Maintenance mensuelle (abonnement séparé)',
+    ],
+    nonInclus: [
+      'Refonte du code ou du design',
+      'Création de nouveaux contenus',
+    ],
+    prix: 'À partir de 150€',
+  },
+  {
+    icone: 'Wrench',
+    titre: 'Refonte',
+    description: 'Votre site repensé selon vos besoins — du simple nettoyage technique à la refonte complète avec des nouvelles fonctionnalités. Devis sur mesure.',
+    inclus: [
+      'Technique uniquement — code propre, perfs, SEO',
+      'Technique + refonte visuelle',
+      'Refonte complète avec nouvelles fonctionnalités',
+      'Hébergement européen — 1ère année offerte',
+      '2 allers-retours de corrections inclus',
+    ],
+    nonInclus: [
+      'Rédaction des textes',
+      'Création du logo',
+      'Photos et illustrations',
+    ],
+    prix: 'Dès 1 000€',
+  },
+  {
+    icone: 'RefreshCw',
+    titre: 'Maintenance mensuelle · Niveau 1',
+    description: 'Surveillance du bon fonctionnement du site. Aucune modification de contenu. Idéal pour rester serein sans gérer la technique.',
+    inclus: [
+      'Maintenance du serveur et des logiciels',
+      'Correction de bugs techniques',
+      'Mises à jour des dépendances (si nécessaire)',
+      'Vérification et ajustement de la sécurité',
+      '1 intervention de maintenance par mois',
+    ],
+    nonInclus: [
+      'Modification de textes ou de contenu',
+      'Nouvelles fonctionnalités',
+    ],
+    prix: '100€ / mois',
+  },
+  {
+    icone: 'MonitorCog',
+    titre: 'Maintenance mensuelle · Niveau 2',
+    description: 'Technique + mises à jour de contenu. Déléguez entièrement la gestion de votre site.',
+    inclus: [
+      'Tout ce qui est inclus dans la maintenance de Niveau 1',
+      'Mises à jour du contenu de votre site · jusqu\'à 2h/mois',
+      'Compte-rendu mensuel si besoin',
+    ],
+    options: [
+      'Heures au-delà de 2h (sur devis)',
+      'Nouvelles fonctionnalités',
+      'Statistiques de visites',
+    ],
+    nonInclus: [
+      'Refonte ou redesign',
+    ],
+    prix: '200€ / mois',
+  },
+]

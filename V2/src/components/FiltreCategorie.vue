@@ -1,15 +1,3 @@
-<script setup>
-
-
-defineProps({
-  filtreActif: String
-})
-
-defineEmits(['changerFiltre'])
-
-</script>
-
-
 <template>
 
   <div class="filtres">
@@ -30,6 +18,15 @@ defineEmits(['changerFiltre'])
   
 </template>
 
+<script setup>
+
+defineProps({
+  filtreActif: String
+})
+
+defineEmits(['changerFiltre'])
+
+</script>
 
 <style scoped>
 

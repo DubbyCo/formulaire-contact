@@ -21,8 +21,8 @@
       </div>
 
       <div class="form-group">
-        <label>SERVICE SOUHAITÉ <span class="optionnel">(optionnel)</span></label>
-        <select v-model="champs.service">
+        <label for="service">SERVICE SOUHAITÉ <span class="optionnel">(optionnel)</span></label>
+        <select id="service" v-model="champs.service">
           <option value="">— Je ne sais pas encore —</option>
           <option>Landing Page</option>
           <option>Site vitrine 3–5 pages</option>
@@ -105,7 +105,6 @@ const soumettre = async () => {
     envoi.value = false
   }
 }
-
 
 </script>
 

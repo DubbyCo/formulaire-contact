@@ -1,39 +1,34 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Accueil from "../pages/Accueil.vue";
-import NotFound from "../pages/NotFound.vue";
-import MentionsLegales from "../pages/MentionsLegales.vue";
-import PolitiqueConfidentialite from "../pages/PolitiqueConfidentialite.vue";
-import CGV from "../pages/CGV.vue";
 
 const routes = [
   {
     path: "/",
     name: 'Accueil',
-    component: Accueil,
+    component: () => import('../pages/Accueil.vue'),
     meta: { title: 'Dubby Code · Développeur web éco-responsable'}
   },
   {
     path: "/mentions-legales",
     name: 'mentions-legales',
-    component: MentionsLegales,
+    component: () => import('../pages/MentionsLegales.vue'),
     meta: { title: 'Dubby Code · Mentions légales' }
   },
   {
     path: "/politique-de-confidentialite",
     name: 'politique-de-confidentialite',
-    component: PolitiqueConfidentialite,
+    component: () => import('../pages/PolitiqueConfidentialite.vue'),
     meta: { title: 'Dubby Code · Politique de confidentialité'}
   },
   {
     path: "/cgv",
     name: 'cgv',
-    component: CGV,
+    component: () => import('../pages/CGV.vue'),
     meta: { title: 'Dubby Code · Condition générale de vente'}
   },
   {
     path: "/:pathMatch(.*)*",
     name: 'not-found',
-    component: NotFound,
+    component: () => import('../pages/NotFound.vue'),
     meta: { title: 'Dubby Code · Page introuvable'}
   },
 ];

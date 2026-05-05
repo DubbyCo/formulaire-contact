@@ -4,14 +4,14 @@
       <div
         ref="trackRef"
         class="marquee-text-track"
-        :style="{ animationPlayState: isPaused || prefersReducedMotion ? 'paused' : 'running' }"
+        :style="{ animationPlayState: animationState }"
       >
         <span v-for="(item, index) in items" :key="`a-${index}`" :class="{ dot: item === '·' }">{{ item }}</span>
       </div>
       <div
         class="marquee-text-track"
         aria-hidden="true"
-        :style="{ animationPlayState: isPaused || prefersReducedMotion ? 'paused' : 'running' }"
+        :style="{ animationPlayState: animationState }"
       >
         <span v-for="(item, index) in items" :key="`b-${index}`" :class="{ dot: item === '·' }">{{ item }}</span>
       </div>
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 const items = [
   'Vue.js', '·', 'Nuxt.js', '·', 'Hebergement', '·',
@@ -29,6 +29,9 @@ const items = [
   'Green IT', '·', 'Souveraineté', '·', 'RGPD', '·', 'Cybersécurité', '·', 
 ]
 
+const animationState = computed(() => 
+  isPaused.value || prefersReducedMotion.value ? 'paused' : 'running'
+)
 const isPaused = ref(false)
 const prefersReducedMotion = ref(
   window.matchMedia('(prefers-reduced-motion: reduce)').matches

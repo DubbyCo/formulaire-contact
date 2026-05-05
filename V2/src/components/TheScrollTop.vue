@@ -20,7 +20,6 @@ onMounted(() => window.addEventListener('scroll', handleScroll, { passive: true 
 
 onUnmounted(() => window.removeEventListener('scroll', handleScroll))
 
-
 </script>
 
 <style scoped>

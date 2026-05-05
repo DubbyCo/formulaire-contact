@@ -107,12 +107,9 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
-  if (observer) observer.disconnect()
 })
 
-
 </script>
-
 
 <style scoped>
 .site-header {
